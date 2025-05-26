@@ -7,7 +7,23 @@ function updateUI(pairs) {
   listEl.innerHTML = '';
   for (let key in pairs) {
     const li = document.createElement('li');
-    li.textContent = `"${key}" → "${pairs[key]}"`;
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = `"${key}" → "${pairs[key]}"`;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = '✕';
+    removeBtn.className = 'remove-btn';
+    removeBtn.addEventListener('click', async () => {
+      const stored = await chrome.storage.local.get('pairs');
+      const newPairs = stored.pairs || {};
+      delete newPairs[key];
+      await chrome.storage.local.set({ pairs: newPairs });
+      updateUI(newPairs);
+    });
+
+    li.appendChild(textSpan);
+    li.appendChild(removeBtn);
     listEl.appendChild(li);
   }
 }

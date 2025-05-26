@@ -14,10 +14,23 @@ body {
   gap: 12px;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  filter: invert(1); /* Make black logo visible on light background */
+}
+
 h2 {
   margin: 0;
   color: #333;
-  text-align: center;
+  font-size: 20px;
 }
 
 .input-group {
@@ -70,6 +83,9 @@ button:hover {
 }
 
 #list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 6px 4px;
   border-bottom: 1px solid #eee;
   font-size: 14px;
@@ -77,4 +93,12 @@ button:hover {
 
 #list li:last-child {
   border-bottom: none;
+}
+
+.remove-btn {
+  background-color: transparent;
+  color: #d11a2a;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
